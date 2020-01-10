@@ -1,0 +1,47 @@
+---
+# tasks file for backup-local
+
+- name: create backup group
+  become: yes
+  group:
+    name: backup
+
+- name: add root to backup group
+  become: yes
+  user:
+    name: root
+    groups: backup
+    append: yes
+
+- name: add {{ ansible_user_id }} user to backup group
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: backup
+    append: yes
+
+- name: ensure backup folder exists
+  become: yes
+  file:
+    path: "{{ backup_local_destination }}"
+    state: directory
+    group: backup
+    mode: 0750
+
+- name: copy backup script
+  become: yes
+  copy:
+    src: backup.py
+    dest: "{{ backup_local_destination }}/backup_{{ backup_local_name }}.py"
+    mode: 0700
+
+- name: configure backup cron job
+  become: yes
+  cron:
+    name: "backup {{ backup_local_name }}"
+    minute: "{{ backup_local_minute }}"
+    hour: "{{ backup_local_hour }}"
+    day: "{{ backup_local_day }}"
+    month: "{{ backup_local_month }}"
+    weekday:  "{{ backup_local_weekday }}"
+    job: "python '{{ backup_local_destination }}/backup_{{ backup_local_name }}.py' '{{ backup_local_name }}' '{{ backup_local_target }}' '{{ backup_local_destination }}' '{{ backup_local_retention_number }}'  >> '{{ backup_local_destination }}/cron_{{ backup_local_name }}.log' 2>&1"

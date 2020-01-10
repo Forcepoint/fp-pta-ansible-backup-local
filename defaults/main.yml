@@ -1,0 +1,9 @@
+---
+# defaults file for backup-local
+
+backup_local_minute: "0"
+backup_local_hour: "4"
+backup_local_day: "*"
+backup_local_month: "*"
+backup_local_weekday: "1-5"
+backup_local_retention_number: 10
