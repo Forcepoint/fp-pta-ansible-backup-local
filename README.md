@@ -5,6 +5,8 @@ frequency via a cron job. This role doesn't transfer the tars off the host. This
 by another process. The simplest transfer would be to utilize a mounted drive as the target backup folder so the files 
 are moved automatically when the tar is created.
 
+For information about PTA and how to use it with this Ansible role please visit https://github.com/Forcepoint/fp-pta-overview/blob/master/README.md
+
 ## Requirements
 
 Cron, Tar, and Python27 must be installed.
