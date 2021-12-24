@@ -28,12 +28,21 @@
     group: backup
     mode: 0750
 
-- name: copy backup script
+- name: copy backup script (py27)
   become: yes
   copy:
-    src: backup.py
+    src: backup_py27.py
     dest: "{{ backup_local_destination }}/backup_{{ backup_local_name }}.py"
     mode: 0700
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version <= '7'
+
+- name: copy backup script (py3)
+  become: yes
+  copy:
+    src: backup_py3.py
+    dest: "{{ backup_local_destination }}/backup_{{ backup_local_name }}.py"
+    mode: 0700
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version > '7'
 
 - name: configure backup cron job
   become: yes
