@@ -7,3 +7,4 @@ backup_local_day: "*"
 backup_local_month: "*"
 backup_local_weekday: "1-5"
 backup_local_retention_number: 10
+backup_local_what_if: no
