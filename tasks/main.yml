@@ -22,7 +22,7 @@
     month: "{{ backup_local_month }}"
     weekday:  "{{ backup_local_weekday }}"
     job: "python '{{ backup_local_destination }}/backup_{{ backup_local_name }}.py' '{{ backup_local_name }}' '{{ backup_local_target }}' '{{ backup_local_destination }}' '{{ backup_local_retention_number }}'  >> '{{ backup_local_destination }}/cron_{{ backup_local_name }}.log' 2>&1"
-  when: not encrypt_gpg_and_transfer_scp_what_if
+  when: not backup_local_what_if
 
 - name: configure backup cron job (what-if)
   cron:
@@ -33,5 +33,5 @@
     month: "{{ backup_local_month }}"
     weekday:  "{{ backup_local_weekday }}"
     job: "python '{{ backup_local_destination }}/backup_{{ backup_local_name }}.py' '{{ backup_local_name }}' '{{ backup_local_target }}' '{{ backup_local_destination }}' '{{ backup_local_retention_number }}' --what-if  >> '{{ backup_local_destination }}/cron_{{ backup_local_name }}.log' 2>&1"
-  when: encrypt_gpg_and_transfer_scp_what_if
+  when: backup_local_what_if
 
