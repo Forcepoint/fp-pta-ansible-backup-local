@@ -34,4 +34,3 @@
     weekday:  "{{ backup_local_weekday }}"
     job: "python '{{ backup_local_destination }}/backup_{{ backup_local_name }}.py' '{{ backup_local_name }}' '{{ backup_local_target }}' '{{ backup_local_destination }}' '{{ backup_local_retention_number }}' --what-if  >> '{{ backup_local_destination }}/cron_{{ backup_local_name }}.log' 2>&1"
   when: backup_local_what_if
-
