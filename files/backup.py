@@ -12,6 +12,7 @@ import datetime
 import glob
 import os
 import pathlib
+import pwd
 import subprocess
 
 
@@ -114,7 +115,7 @@ if __name__ == "__main__":
         list_tar_output = subprocess.check_output(command_tar, text=True).split()
         log(path_log_file, 'TAR OUTPUT...\n{}'.format('\n'.join(list_tar_output)))
         log(path_log_file, 'OWN TAR')
-        subprocess.check_call(['sudo', 'chown', "{0}:{0}".format(os.getusername()), path_tar])
+        subprocess.check_call(['sudo', 'chown', "{0}:{0}".format(pwd.getpwuid(os.getuid()).pw_name), path_tar])
 
     if count_retain != 0:
         # Check how many tars there are. If there's more than the retention value, delete the older ones. Ensure
