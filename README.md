@@ -21,7 +21,8 @@ For information about PTA and how to use it with this Ansible role please visit 
 ## Requirements
 
 Cron, Tar, and Python3 must be installed. The user context this role runs under is assumed to already
-have permissions to read from target folder and to create the destination folder.
+have permissions to read from target folder and to create the destination folder, and the user has
+passwordless sudo available.
 
 ## Role Variables
 
