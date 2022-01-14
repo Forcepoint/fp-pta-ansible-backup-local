@@ -92,7 +92,7 @@ if __name__ == "__main__":
     path_destination = os.path.abspath(os.path.normpath(args.destination))
     count_retain = int(float(args.retention))
     path_tar = os.path.join(path_destination, "{}_{}.tar".format(
-        args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")))
+        args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")))
 
     # Assumptions
     assert os.path.exists(path_target), "The target path must exist."
