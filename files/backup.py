@@ -48,8 +48,11 @@ def setup_logging(log_folder, prefix='', retain=10):
     assert os.path.exists(log_folder), "The log folder must already exist."
 
     # Calculate the intended log path.
-    log_file_path = os.path.join(log_folder, "{}{}.log".format(
-        prefix, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")))
+    if len(prefix) == 0:
+        log_file_path = os.path.join(log_folder, "{}.log".format(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")))
+    else:
+        log_file_path = os.path.join(log_folder, "{}_{}.log".format(
+            prefix, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")))
     assert not os.path.exists(log_file_path), "A log file already exists with that name - {}".format(log_file_path)
     log(log_file_path, "SCRIPT START")
 
