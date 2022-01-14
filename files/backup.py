@@ -81,8 +81,8 @@ if __name__ == "__main__":
     parser.add_argument("destination", help="The directory to place the tar.")
     parser.add_argument("retention", help="The number of tars to retain. Zero means infinite (i.e. don't delete "
                                           "anything).")
-    parser.add_argument("--what-if", action='store_true', help="Do not perform any deletions, encryptions, "
-                                                               "or transfers.")
+    parser.add_argument("--what-if", action='store_true', help="Do not perform any tasks. "
+                                                               "Just log the intended actions.")
     args = parser.parse_args()
 
     # Get a log file setup in the same directory as this script.
@@ -106,6 +106,7 @@ if __name__ == "__main__":
     log(path_log_file, "WHAT-IF: {}".format(args.what_if))
     log(path_log_file, "TARGET: {}".format(path_target))
     log(path_log_file, "DESTINATION: {}".format(path_destination))
+    log(path_log_file, "RETAIN: {}".format(count_retain))
     log(path_log_file, "TAR: {}".format(path_tar))
 
     # Tar up the target to the destination folder.

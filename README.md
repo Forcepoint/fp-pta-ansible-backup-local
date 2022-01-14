@@ -38,7 +38,7 @@ passwordless sudo available.
 * backup_local_month: The month of the year to run the job. Defaults to "*", or every month of the year.
 * backup_local_weekday: The day of the week to run the job. Defaults to "1-5", or Monday through Friday.
 * backup_local_retention_number: The number of backups to retain. 0 means infinite (no cleanup). Defaults to 10.
-* backup_local_what_if: Logs the operations, but does not actually perform the proscribed tasks. 
+* backup_local_what_if: Logs the operations, but does not actually perform the prescribed tasks. 
   Defaults to 'no'. Useful if you want to double-check what the script will actually do.
 
 ## Dependencies
